@@ -13,6 +13,7 @@ export function createLogoUrl(getDomain, getOptions) {
             format: opts?.format,
             greyscale: opts?.greyscale,
             theme: opts?.theme,
+            variant: opts?.variant,
         });
     });
     return {

@@ -67,7 +67,7 @@
     "server-only": "^0.0.1"
   },
   "peerDependencies": {
-    "next": "^14 || ^15 || ^16",
+    "next": "^15 || ^16",
     "react": ">=18",
     "react-dom": ">=18"
   },
@@ -79,12 +79,12 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "jsdom": "^28.0.0",
-    "next": "^16.1.6",
+    "next": "^16.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "semantic-release": "^25.0.3",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.3"
   }
 }

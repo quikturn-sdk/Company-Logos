@@ -4,7 +4,6 @@
   import { fireBeacon } from "./beacon.js";
   import { isValidHref } from "./validate-href.js";
   import type { QuikturnLogoGridProps, LogoConfig, ResolvedLogo } from "./types.js";
-  import type { Snippet } from "svelte";
   import { onMount } from "svelte";
 
   let {
@@ -18,6 +17,7 @@
     logoFormat,
     logoGreyscale,
     logoTheme,
+    logoVariant,
     renderItem,
     class: className,
     ariaLabel = "Company logos",
@@ -41,6 +41,7 @@
         format: item.format ?? logoFormat,
         greyscale: item.greyscale ?? logoGreyscale,
         theme: item.theme ?? logoTheme,
+        variant: item.variant ?? logoVariant,
         baseUrl: effectiveBaseUrl,
       }),
     }));

@@ -24,7 +24,7 @@ pnpm add @quikturn/logos-next @quikturn/logos @quikturn/logos-react next react r
 npm install @quikturn/logos-next @quikturn/logos @quikturn/logos-react next react react-dom
 ```
 
-**Peer dependencies:** `next >= 14`, `react >= 18`, `react-dom >= 18`
+**Peer dependencies:** `next >= 15`, `react >= 18`, `react-dom >= 18`
 
 ## Quick Start
 
