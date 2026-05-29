@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@quikturn/logos-next": "workspace:*",
-    "next": "^15.5.14",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "catalog:next",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
   },
   "devDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "typescript": "^5.9.3"
+    "@types/react": "catalog:react19",
+    "@types/react-dom": "catalog:react19",
+    "typescript": "catalog:"
   }
 }

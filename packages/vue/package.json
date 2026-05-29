@@ -60,19 +60,19 @@
     "vue": "^3.5.28"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/changelog": "catalog:",
+    "@semantic-release/exec": "catalog:",
+    "@semantic-release/git": "catalog:",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/vue": "^8.1.0",
     "@vitejs/plugin-vue": "^6.0.5",
-    "jsdom": "^28.0.0",
-    "semantic-release": "^25.0.3",
-    "typescript": "^5.9.3",
-    "vite": "^8.0.7",
+    "jsdom": "catalog:",
+    "semantic-release": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^4.1.3",
-    "vue": "^3.5.28",
+    "vitest": "catalog:",
+    "vue": "catalog:vue3",
     "vue-tsc": "^3.2.6"
   }
 }

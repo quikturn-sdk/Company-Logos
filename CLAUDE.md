@@ -109,6 +109,18 @@ Single root `eslint.config.mjs` (ESLint 9.x flat config) covers the entire monor
 - Svelte `prefer-const` is `off` for `.svelte` files (`$props()` destructuring uses `let`)
 - Angular `no-input-rename` is `off` (we use `{ alias: "class" }`)
 
+## Dependency management
+
+Shared versions are centralized in `pnpm-workspace.yaml` — do **not** pin literal versions of shared deps in individual `package.json` files.
+
+- **Catalogs** (`catalog:` / `catalog:<name>`) are the single source of truth for shared versions. Bump once in `pnpm-workspace.yaml` and the whole monorepo moves together.
+  - Default `catalog:` — toolchain identical everywhere: `typescript`, `vitest`, `vite`, `jsdom`, `semantic-release` + its plugins.
+  - Named catalogs — `react19`, `next`, `svelte5`, `vue3` for framework deps. The `next` catalog (`^16.2.6`) is the one place that resolves the old Next 15-vs-16 split.
+  - `peerDependencies` stay broad (e.g. `react: ">=18"`); only the dev/test target uses the catalog (`catalog:react19`).
+- **Overrides** live in the `overrides:` block of `pnpm-workspace.yaml`, used to force transitive (mostly dev-only) deps to patched versions. ⚠️ pnpm 10.x no longer reads the `pnpm.overrides` field in `package.json` and silently ignores it — never put overrides there.
+- When adding a new shared dependency, add it to a catalog and reference `catalog:` from the package, rather than pinning a literal range.
+- `@quikturn/logos` core ships **zero runtime deps**; framework packages depend only on `@quikturn/logos` (+ `server-only` in next). Nearly all `pnpm audit` findings are dev-tooling/example noise — gate CI audits on what actually ships, not the full tree.
+
 ## Conventions
 
 - Branding: always "Quikturn" (lowercase t), never "QuikTurn"

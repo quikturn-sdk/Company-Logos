@@ -12,8 +12,8 @@
     "@quikturn/logos-svelte": "workspace:^"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^5.0.0",
-    "svelte": "^5.31.1",
-    "vite": "^6.4.2"
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "svelte": "catalog:svelte5",
+    "vite": "catalog:"
   }
 }
