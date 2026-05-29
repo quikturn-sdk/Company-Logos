@@ -7,6 +7,14 @@ import type { Tier, KeyType, SupportedOutputFormat, FormatShorthand } from "./ty
 /** Root endpoint for the Quikturn Logos API. */
 export const BASE_URL = "https://logos.getquikturn.io" as const;
 
+/** Default values for search requests. @since 0.8.0 */
+export const SEARCH_DEFAULTS = {
+  mode: "autocomplete" as const,
+  page: 1,
+  autocompleteLimit: 10,
+  searchLimit: 25,
+} as const;
+
 // ---------------------------------------------------------------------------
 // Size Defaults & Limits
 // ---------------------------------------------------------------------------

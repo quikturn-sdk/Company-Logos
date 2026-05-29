@@ -57,3 +57,14 @@ export {
   ScrapeTimeoutError,
   BadRequestError,
 } from "./errors";
+
+// --- Search (runtime) ---
+export { searchLogos } from "./search";
+export type {
+  SearchMode,
+  SearchFilters,
+  SearchOptions,
+  SearchCacheInfo,
+  SearchResult,
+  SearchResponse,
+} from "./search-types";

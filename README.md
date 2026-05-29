@@ -67,6 +67,45 @@ const url = logoUrl("stripe.com", {
 });
 ```
 
+### Search
+
+Search for company logos by name or domain:
+
+```typescript
+import { searchLogos } from "@quikturn/logos";
+
+const results = await searchLogos({
+  q: "stripe",
+  token: "pk_live_xxx",
+});
+
+for (const result of results.results) {
+  console.log(result.domain, result.logoUrl);
+}
+```
+
+> **SSR Note:** `searchLogos` deduplicates concurrent identical requests at the module level.
+> In server-side rendering environments, pass an `AbortSignal` to bypass deduplication
+> and ensure per-request isolation. Note: providing your own signal opts out of the
+> default 10-second fetch timeout — use `AbortSignal.timeout(10000)` (or your preferred
+> duration) to prevent hung requests in server environments.
+
+#### Search Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `q` | `string` | required | Search query |
+| `mode` | `"autocomplete" \| "search"` | `"autocomplete"` | Search mode |
+| `page` | `number` | `1` | Page number |
+| `limit` | `number` | `10` (autocomplete) / `25` (search) | Results per page. Capped at 20 (autocomplete) / 100 (search). |
+| `filters` | `SearchFilters` | — | Optional field filters |
+| `sort` | `string` | — | Sort expression |
+| `token` | `string` | — | API token (publishable key) |
+| `baseUrl` | `string` | — | Override API base URL (staging) |
+| `signal` | `AbortSignal` | — | Optional AbortSignal for request cancellation |
+
+---
+
 ### Browser Client
 
 ```ts

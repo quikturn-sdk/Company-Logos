@@ -67,6 +67,8 @@ Four entry points, each with a separate tsup bundle and package.json `exports` c
 - `src/url-builder.ts` — `logoUrl()` pure function with RFC 1035/1123 domain validation
 - `src/errors.ts` — `LogoError` base class + 7 subclasses, `LogoErrorCode` discriminated union (14 codes)
 - `src/headers.ts` — `parseLogoHeaders()` and `parseRetryAfter()` for response header parsing
+- `src/search-types.ts` — Type definitions for `searchLogos()`: `SearchOptions`, `SearchResponse`, `SearchResult`, `SearchCacheInfo`, `SearchFilters`
+- `src/search.ts` — `searchLogos()` public API: GET /v1/search with deduplication, limit capping, filter serialization, and RateLimitError mapping
 - `src/internal/delay.ts` — Abort-aware `delay(ms, signal?)` shared by fetcher + poller
 - `src/internal/beacon.ts` — Fire-and-forget attribution pixel, SSR-safe, deduped by token
 - `src/client/fetcher.ts` — `browserFetch()` with retry, error mapping, warning callbacks (no Authorization header)
