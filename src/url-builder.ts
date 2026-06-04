@@ -13,6 +13,7 @@ import type { LogoRequestOptions, SupportedOutputFormat, FormatShorthand } from 
 import {
   BASE_URL,
   DEFAULT_WIDTH,
+  DEFAULT_GRAY_VALUE,
   MAX_WIDTH,
   MAX_WIDTH_SERVER,
   FORMAT_ALIASES,
@@ -218,6 +219,7 @@ export function logoUrl(domain: string, options?: LogoRequestOptions): string {
     size,
     width,
     greyscale,
+    grayValue,
     theme,
     format,
     variant,
@@ -257,6 +259,10 @@ export function logoUrl(domain: string, options?: LogoRequestOptions): string {
 
   if (greyscale === true) {
     url.searchParams.set("greyscale", "1");
+  }
+
+  if (greyscale === true && grayValue !== undefined && grayValue !== DEFAULT_GRAY_VALUE) {
+    url.searchParams.set("grayValue", String(Math.round(grayValue)));
   }
 
   if (theme === "light" || theme === "dark") {

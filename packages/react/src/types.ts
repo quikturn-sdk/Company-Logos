@@ -5,6 +5,7 @@ export interface LogoOptions {
   size?: number;
   format?: SupportedOutputFormat | FormatShorthand;
   greyscale?: boolean;
+  grayValue?: number;
   theme?: ThemeOption;
   variant?: LogoVariant;
 }
@@ -22,6 +23,7 @@ export interface ResolvedLogo {
   url: string;
   alt: string;
   href?: string;
+  greyscale?: boolean;
 }
 
 /** Props for the QuikturnLogo component. */

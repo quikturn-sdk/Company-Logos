@@ -28,6 +28,9 @@ export const MAX_WIDTH = 800 as const;
 /** Maximum width (px) for requests using secret keys (sk_). */
 export const MAX_WIDTH_SERVER = 1200 as const;
 
+/** Default gray value for monochrome transformation (0=black, 255=white). */
+export const DEFAULT_GRAY_VALUE = 120 as const;
+
 // ---------------------------------------------------------------------------
 // Output Format Defaults
 // ---------------------------------------------------------------------------

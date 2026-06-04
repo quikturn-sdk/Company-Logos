@@ -45,7 +45,8 @@ export type FormatShorthand = "png" | "jpeg" | "webp" | "avif";
  * - `token`      — Publishable key (qt_/pk_) appended as a query parameter.
  * - `size`       — Output width in pixels. Clamped to 1..800 (publishable) or 1..1200 (secret). Default: 128.
  * - `width`      — Alias for `size`.
- * - `greyscale`  — When true, applies saturation: 0 transformation. Default: false.
+ * - `greyscale`  — When true, applies monochrome transformation (uniform gray). Default: false.
+ * - `grayValue`  — Gray level for monochrome (0=black, 255=white). Default: 120. Only used when greyscale is true.
  * - `theme`      — "light" (gamma 0.9) or "dark" (gamma 1.12).
  * - `format`     — Output image format. Accepts full MIME type or shorthand. Default: "image/png".
  * - `variant`    — "full" (default) for the standard logo, "icon" for the favicon/icon version.
@@ -57,6 +58,7 @@ export interface LogoRequestOptions {
   size?: number;
   width?: number;
   greyscale?: boolean;
+  grayValue?: number;
   theme?: ThemeOption;
   format?: SupportedOutputFormat | FormatShorthand;
   variant?: LogoVariant;

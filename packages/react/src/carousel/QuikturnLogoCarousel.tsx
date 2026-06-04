@@ -121,6 +121,28 @@ function DefaultLogoItem({
   scaleOnHover: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
+  const [errored, setErrored] = useState(false);
+
+  if (errored) {
+    return (
+      <span
+        role="img"
+        aria-label={logo.alt}
+        style={{
+          display: "inline-block",
+          height: `${logoHeight}px`,
+          width: `${logoHeight}px`,
+        }}
+      />
+    );
+  }
+
+  const transitions = [
+    scaleOnHover && "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+    logo.greyscale && "filter 200ms ease",
+  ]
+    .filter(Boolean)
+    .join(", ") || undefined;
 
   const imgStyle: React.CSSProperties = {
     height: `${logoHeight}px`,
@@ -129,10 +151,9 @@ function DefaultLogoItem({
     objectFit: "contain",
     userSelect: "none",
     pointerEvents: "none",
+    filter: logo.greyscale ? "grayscale(1)" : undefined,
     transform: scaleOnHover && hovered ? "scale(1.2)" : undefined,
-    transition: scaleOnHover
-      ? "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)"
-      : undefined,
+    transition: transitions,
   };
 
   const handlers = scaleOnHover
@@ -150,6 +171,7 @@ function DefaultLogoItem({
       decoding="async"
       draggable={false}
       style={imgStyle}
+      onError={() => setErrored(true)}
     />
   );
 
@@ -224,6 +246,11 @@ export const QuikturnLogoCarousel = React.memo<QuikturnLogoCarouselProps>(
     const [seqHeight, setSeqHeight] = useState(0);
     const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
     const [isHovered, setIsHovered] = useState(false);
+    const [dpr, setDpr] = useState(1);
+
+    useEffect(() => {
+      setDpr(window.devicePixelRatio || 1);
+    }, []);
 
     const isVertical = direction === "up" || direction === "down";
 
@@ -231,23 +258,32 @@ export const QuikturnLogoCarousel = React.memo<QuikturnLogoCarouselProps>(
     const resolvedLogos: ResolvedLogo[] = useMemo(() => {
       const items: LogoConfig[] =
         logos ?? (domains ?? []).map((d) => ({ domain: d }));
-      return items.map((item) => ({
-        domain: item.domain,
-        alt: item.alt ?? `${item.domain} logo`,
-        href: item.href,
-        url: logoUrl(item.domain, {
-          token: effectiveToken || undefined,
-          size: item.size ?? logoSize,
-          format: item.format ?? logoFormat,
-          greyscale: item.greyscale ?? logoGreyscale,
-          theme: item.theme ?? logoTheme,
-          variant: item.variant ?? logoVariant,
-          baseUrl: effectiveBaseUrl,
-        }),
-      }));
+
+      return items.map((item) => {
+        const itemGreyscale = item.greyscale ?? logoGreyscale;
+        const itemSize = item.size ?? logoSize;
+        const dprSize = Math.round((itemSize ?? 128) * dpr);
+        return {
+          domain: item.domain,
+          alt: item.alt ?? `${item.domain} logo`,
+          href: item.href,
+          greyscale: itemGreyscale,
+          url: logoUrl(item.domain, {
+            token: effectiveToken || undefined,
+            size: dprSize,
+            format: item.format ?? logoFormat,
+            greyscale: itemGreyscale,
+            grayValue: item.grayValue,
+            theme: item.theme ?? logoTheme,
+            variant: item.variant ?? logoVariant,
+            baseUrl: effectiveBaseUrl,
+          }),
+        };
+      });
     }, [
       domains,
       logos,
+      dpr,
       effectiveToken,
       effectiveBaseUrl,
       logoSize,
