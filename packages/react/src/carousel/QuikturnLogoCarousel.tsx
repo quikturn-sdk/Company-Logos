@@ -137,13 +137,6 @@ function DefaultLogoItem({
     );
   }
 
-  const transitions = [
-    scaleOnHover && "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-    logo.greyscale && "filter 200ms ease",
-  ]
-    .filter(Boolean)
-    .join(", ") || undefined;
-
   const imgStyle: React.CSSProperties = {
     height: `${logoHeight}px`,
     width: "auto",
@@ -151,9 +144,10 @@ function DefaultLogoItem({
     objectFit: "contain",
     userSelect: "none",
     pointerEvents: "none",
-    filter: logo.greyscale ? "grayscale(1)" : undefined,
     transform: scaleOnHover && hovered ? "scale(1.2)" : undefined,
-    transition: transitions,
+    transition: scaleOnHover
+      ? "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)"
+      : undefined,
   };
 
   const handlers = scaleOnHover
@@ -259,10 +253,16 @@ export const QuikturnLogoCarousel = React.memo<QuikturnLogoCarouselProps>(
       const items: LogoConfig[] =
         logos ?? (domains ?? []).map((d) => ({ domain: d }));
 
+      // Request a width that covers the display size at the device's pixel density.
+      // Logos render at logoHeight with width:auto, so the display width depends
+      // on aspect ratio. We use max(logoSize, logoHeight*4) to cover wide logos
+      // (up to ~4:1 aspect ratio) without over-fetching.
+      const baseSize = logoSize ?? Math.round(logoHeight * 4);
+
       return items.map((item) => {
         const itemGreyscale = item.greyscale ?? logoGreyscale;
-        const itemSize = item.size ?? logoSize;
-        const dprSize = Math.round((itemSize ?? 128) * dpr);
+        const itemSize = item.size ?? baseSize;
+        const dprSize = Math.round(itemSize * dpr);
         return {
           domain: item.domain,
           alt: item.alt ?? `${item.domain} logo`,
@@ -286,6 +286,7 @@ export const QuikturnLogoCarousel = React.memo<QuikturnLogoCarouselProps>(
       dpr,
       effectiveToken,
       effectiveBaseUrl,
+      logoHeight,
       logoSize,
       logoFormat,
       logoGreyscale,
@@ -403,6 +404,7 @@ export const QuikturnLogoCarousel = React.memo<QuikturnLogoCarouselProps>(
                 role="listitem"
                 style={{
                   flex: "none",
+                  filter: logo.greyscale ? "grayscale(1)" : undefined,
                   ...(isVertical
                     ? { marginBottom: `${gap}px` }
                     : { marginRight: `${gap}px` }),
