@@ -91,6 +91,14 @@ describe("Phase 7B: <quikturn-logo> Web Component", () => {
     document.body.removeChild(el);
   });
 
+  it("E.5b - img has referrerPolicy=no-referrer", async () => {
+    await getQuikturnLogo();
+    const el = appendAndGet({ domain: "github.com" });
+    const img = el.shadowRoot!.querySelector("img")!;
+    expect(img.referrerPolicy).toBe("no-referrer");
+    document.body.removeChild(el);
+  });
+
   // E.6 - Renders attribution link with text "Powered by Quikturn"
   it("E.6 - renders attribution link with correct text", async () => {
     await getQuikturnLogo();

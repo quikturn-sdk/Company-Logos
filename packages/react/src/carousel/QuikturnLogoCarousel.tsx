@@ -164,6 +164,7 @@ function DefaultLogoItem({
       loading="lazy"
       decoding="async"
       draggable={false}
+      referrerPolicy="no-referrer"
       style={imgStyle}
       onError={() => setErrored(true)}
     />

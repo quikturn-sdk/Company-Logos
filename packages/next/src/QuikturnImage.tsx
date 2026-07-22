@@ -77,6 +77,7 @@ export function QuikturnImage({
       src={domain}
       loader={loader}
       alt={alt ?? `${domain} logo`}
+      referrerPolicy="no-referrer"
     />
   );
 }

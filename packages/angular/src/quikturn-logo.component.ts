@@ -12,14 +12,14 @@ import { isValidHref } from "./validate-href";
   template: `
     @if (safeHref()) {
       <a [href]="safeHref()" target="_blank" rel="noopener noreferrer" [class]="cssClass()">
-        <img [src]="src()" [alt]="altText()" [attr.loading]="loading()" (error)="imgError.emit($event)" (load)="imgLoad.emit($event)" />
+        <img [src]="src()" [alt]="altText()" [attr.loading]="loading()" referrerpolicy="no-referrer" (error)="imgError.emit($event)" (load)="imgLoad.emit($event)" />
       </a>
     } @else if (cssClass()) {
       <span [class]="cssClass()">
-        <img [src]="src()" [alt]="altText()" [attr.loading]="loading()" (error)="imgError.emit($event)" (load)="imgLoad.emit($event)" />
+        <img [src]="src()" [alt]="altText()" [attr.loading]="loading()" referrerpolicy="no-referrer" (error)="imgError.emit($event)" (load)="imgLoad.emit($event)" />
       </span>
     } @else {
-      <img [src]="src()" [alt]="altText()" [attr.loading]="loading()" (error)="imgError.emit($event)" (load)="imgLoad.emit($event)" />
+      <img [src]="src()" [alt]="altText()" [attr.loading]="loading()" referrerpolicy="no-referrer" (error)="imgError.emit($event)" (load)="imgLoad.emit($event)" />
     }
   `,
 })
