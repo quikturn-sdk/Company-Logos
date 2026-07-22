@@ -98,6 +98,7 @@ export function QuikturnLogoGrid({
                   src={logo.url}
                   alt={logo.alt}
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                   style={{
                     maxWidth: "100%",
                     height: "auto",
@@ -110,6 +111,7 @@ export function QuikturnLogoGrid({
                 src={logo.url}
                 alt={logo.alt}
                 loading="lazy"
+                referrerPolicy="no-referrer"
                 style={{
                   maxWidth: "100%",
                   height: "auto",

@@ -178,6 +178,15 @@ describe("QuikturnLogoCarousel", () => {
     expect(links[0]).toHaveAttribute("href", "https://github.com");
   });
 
+  it("sets referrerPolicy=no-referrer on all imgs", () => {
+    render(<QuikturnLogoCarousel domains={TEST_DOMAINS} />);
+    const images = screen.getAllByRole("img");
+    expect(images.length).toBeGreaterThan(0);
+    for (const img of images) {
+      expect(img).toHaveAttribute("referrerpolicy", "no-referrer");
+    }
+  });
+
   it("renders carousel with direction='right'", () => {
     render(
       <QuikturnLogoCarousel domains={TEST_DOMAINS} direction="right" />,

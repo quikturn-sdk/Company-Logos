@@ -49,6 +49,7 @@ export function QuikturnLogo({
       src={src}
       alt={alt ?? `${domain} logo`}
       loading={loading}
+      referrerPolicy="no-referrer"
       onError={onError}
       onLoad={onLoad}
     />

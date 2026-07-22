@@ -98,6 +98,7 @@ export class QuikturnLogo extends HTMLElement {
     const img = document.createElement("img");
     img.className = "qt-logo-img";
     img.loading = "lazy";
+    img.referrerPolicy = "no-referrer";
     img.alt = `${domain} logo`;
     img.src = logoUrl(domain, {
       token: token || undefined,

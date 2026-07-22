@@ -62,10 +62,10 @@ onMounted(() => {
     :class="props.class"
     :style="props.style"
   >
-    <img :src="src" :alt="altText" :loading="loading" @error="emit('error', $event)" @load="emit('load', $event)" />
+    <img :src="src" :alt="altText" :loading="loading" referrerpolicy="no-referrer" @error="emit('error', $event)" @load="emit('load', $event)" />
   </a>
   <span v-else-if="props.class || props.style" :class="props.class" :style="props.style">
-    <img :src="src" :alt="altText" :loading="loading" @error="emit('error', $event)" @load="emit('load', $event)" />
+    <img :src="src" :alt="altText" :loading="loading" referrerpolicy="no-referrer" @error="emit('error', $event)" @load="emit('load', $event)" />
   </span>
-  <img v-else :src="src" :alt="altText" :loading="loading" @error="emit('error', $event)" @load="emit('load', $event)" />
+  <img v-else :src="src" :alt="altText" :loading="loading" referrerpolicy="no-referrer" @error="emit('error', $event)" @load="emit('load', $event)" />
 </template>

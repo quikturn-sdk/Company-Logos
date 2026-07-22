@@ -192,6 +192,22 @@ describe("QuikturnImage", () => {
     expect(img.getAttribute("data-priority")).toBe("true");
   });
 
+  it("sets referrerPolicy=no-referrer", () => {
+    render(
+      <QuikturnImage
+        domain="github.com"
+        token="qt_abc"
+        width={128}
+        height={128}
+        alt="GitHub"
+      />,
+    );
+    expect(screen.getByTestId("next-image")).toHaveAttribute(
+      "referrerpolicy",
+      "no-referrer",
+    );
+  });
+
   it("passes additional next/image props through", () => {
     render(
       <QuikturnImage

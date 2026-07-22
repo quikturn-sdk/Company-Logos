@@ -56,12 +56,12 @@
     class={className}
     {style}
   >
-    <img src={src} alt={altText} {loading} {onerror} {onload} />
+    <img src={src} alt={altText} {loading} referrerpolicy="no-referrer" {onerror} {onload} />
   </a>
 {:else if className || style}
   <span class={className} {style}>
-    <img src={src} alt={altText} {loading} {onerror} {onload} />
+    <img src={src} alt={altText} {loading} referrerpolicy="no-referrer" {onerror} {onload} />
   </span>
 {:else}
-  <img src={src} alt={altText} {loading} {onerror} {onload} />
+  <img src={src} alt={altText} {loading} referrerpolicy="no-referrer" {onerror} {onload} />
 {/if}

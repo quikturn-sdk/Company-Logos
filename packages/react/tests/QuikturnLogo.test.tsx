@@ -62,6 +62,14 @@ describe("QuikturnLogo", () => {
     expect(screen.getByRole("img")).toHaveAttribute("loading", "lazy");
   });
 
+  it("sets referrerPolicy=no-referrer on img", () => {
+    render(<QuikturnLogo domain="github.com" />);
+    expect(screen.getByRole("img")).toHaveAttribute(
+      "referrerpolicy",
+      "no-referrer",
+    );
+  });
+
   it("applies className to wrapper", () => {
     const { container } = render(
       <QuikturnLogo domain="github.com" className="my-logo" />,
