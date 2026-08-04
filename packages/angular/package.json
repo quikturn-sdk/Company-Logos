@@ -58,14 +58,14 @@
     "@angular/core": ">=17.0.0"
   },
   "devDependencies": {
-    "@analogjs/vite-plugin-angular": "^2.4.3",
-    "@angular/build": "^21.2.7",
-    "@angular/common": "^21.2.8",
-    "@angular/compiler": "^21.2.8",
-    "@angular/compiler-cli": "^21.2.8",
-    "@angular/core": "^21.2.8",
-    "@angular/platform-browser": "^21.2.8",
-    "@angular/platform-browser-dynamic": "^21.2.8",
+    "@analogjs/vite-plugin-angular": "^2.6.4",
+    "@angular/build": "^22.0.8",
+    "@angular/common": "^22.0.8",
+    "@angular/compiler": "^22.0.8",
+    "@angular/compiler-cli": "^22.0.8",
+    "@angular/core": "^22.0.8",
+    "@angular/platform-browser": "^22.0.8",
+    "@angular/platform-browser-dynamic": "^22.0.8",
     "@semantic-release/changelog": "catalog:",
     "@semantic-release/exec": "catalog:",
     "@semantic-release/git": "catalog:",
@@ -73,8 +73,8 @@
     "semantic-release": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-dts": "^5.0.3",
     "vitest": "catalog:",
-    "zone.js": "^0.16.1"
+    "zone.js": "^0.16.2"
   }
 }

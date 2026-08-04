@@ -3,6 +3,13 @@ packages:
   - 'packages/*'
   - 'examples/*'
 
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+  sharp: true
+
 # ---------------------------------------------------------------------------
 # Catalogs — single source of truth for shared dependency versions.
 # Reference these from package.json with the `catalog:` / `catalog:<name>`
@@ -11,14 +18,14 @@ packages:
 # ---------------------------------------------------------------------------
 catalog:
   # toolchain — identical everywhere
-  typescript: ^5.9.3
-  vitest: ^4.1.3
-  vite: ^8.0.7
-  jsdom: ^28.1.0
-  semantic-release: ^25.0.3
-  '@semantic-release/changelog': ^6.0.3
-  '@semantic-release/exec': ^6.0.3
-  '@semantic-release/git': ^10.0.1
+  typescript: ^6.0.3
+  vitest: ^4.1.10
+  vite: ^8.1.5
+  jsdom: ^30.0.0
+  semantic-release: ^25.0.8
+  '@semantic-release/changelog': ^7.0.0
+  '@semantic-release/exec': ^7.1.0
+  '@semantic-release/git': ^11.0.1
 
 catalogs:
   react19:
@@ -27,11 +34,11 @@ catalogs:
     '@types/react': ^19.0.0
     '@types/react-dom': ^19.0.0
   next:
-    next: ^16.2.6 # one place to fix the 15-vs-16 split
+    next: ^16.2.11 # one place to fix the 15-vs-16 split
   svelte5:
-    svelte: ^5.55.7
+    svelte: ^5.56.8
   vue3:
-    vue: ^3.5.28
+    vue: ^3.5.40
 
 # ---------------------------------------------------------------------------
 # Overrides — force-resolve transitive (mostly dev-only) dependencies to
@@ -41,31 +48,3 @@ catalogs:
 # NOTE: in pnpm 10.x this block MUST live here, not in package.json's "pnpm"
 # field — pnpm no longer reads that field and silently ignores it.
 # ---------------------------------------------------------------------------
-overrides:
-  # bumped to patched floors from the latest `pnpm audit`
-  lodash: '>=4.18.0'
-  lodash-es: '>=4.18.0'
-  fast-uri: '>=3.1.2'
-  hono: '>=4.12.18'
-  postcss: '>=8.5.10'
-  ip-address: '>=10.1.1'
-  qs: '>=6.15.2'
-  brace-expansion: '>=5.0.6'
-  devalue: '>=5.8.1'
-  js-cookie: '>=3.0.7'
-  # retained protective floors from the previous overrides block
-  minimatch: '>=10.2.3'
-  rollup: '>=4.59.0'
-  picomatch: '>=4.0.4'
-  undici: '>=7.24.0'
-  handlebars: '>=4.7.9'
-  path-to-regexp: '>=8.4.0'
-  flatted: '>=3.4.2'
-  '@angular-devkit/core>ajv': '>=8.18.0'
-  '@microsoft/tsdoc-config>ajv': '>=8.18.0'
-  '@rushstack/node-core-library>ajv': '>=8.18.0'
-  tar: '>=7.5.11'
-  yaml: '>=1.10.3'
-  '@hono/node-server': '>=1.19.13'
-  immutable: '>=5.1.5'
-  express-rate-limit: '>=8.2.2'

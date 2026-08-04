@@ -57,22 +57,22 @@
     "@quikturn/logos": "workspace:^"
   },
   "peerDependencies": {
-    "vue": "^3.5.28"
+    "vue": "^3.5.40"
   },
   "devDependencies": {
     "@semantic-release/changelog": "catalog:",
     "@semantic-release/exec": "catalog:",
     "@semantic-release/git": "catalog:",
-    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/vue": "^8.1.0",
-    "@vitejs/plugin-vue": "^6.0.5",
+    "@vitejs/plugin-vue": "^6.0.8",
     "jsdom": "catalog:",
     "semantic-release": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-dts": "^5.0.3",
     "vitest": "catalog:",
     "vue": "catalog:vue3",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.3.8"
   }
 }
