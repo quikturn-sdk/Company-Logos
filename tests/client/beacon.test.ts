@@ -125,3 +125,51 @@ describe("Phase 7A: fireBeacon", () => {
     expect(imageSrcs).toHaveLength(2);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Telemetry-only contract — beacon must never imply verification
+// ---------------------------------------------------------------------------
+
+describe("fireBeacon telemetry-only contract", () => {
+  it("returns void (fire-and-forget, no verification result)", () => {
+    _resetBeacon();
+    const result = fireBeacon("qt_telemetry");
+    expect(result).toBeUndefined();
+  });
+
+  it("does not attach response handlers to the Image", () => {
+    _resetBeacon();
+    const images: Array<{
+      onload: unknown;
+      onerror: unknown;
+      addEventListener: ReturnType<typeof vi.fn>;
+    }> = [];
+    vi.stubGlobal("Image", class {
+      onload: unknown = undefined;
+      onerror: unknown = undefined;
+      addEventListener = vi.fn();
+      constructor() {
+        images.push(this);
+      }
+      set src(_: string) {}
+    });
+
+    fireBeacon("qt_nohandler");
+
+    expect(images).toHaveLength(1);
+    expect(images[0]?.onload).toBeUndefined();
+    expect(images[0]?.onerror).toBeUndefined();
+    expect(images[0]?.addEventListener).not.toHaveBeenCalled();
+  });
+
+  it("sends only token and page params (no verification payload)", () => {
+    _resetBeacon();
+    let captured = "";
+    vi.stubGlobal("Image", class { set src(v: string) { captured = v; } });
+
+    fireBeacon("qt_params");
+
+    const params = [...new URL(captured).searchParams.keys()];
+    expect(params).toEqual(["token", "page"]);
+  });
+});

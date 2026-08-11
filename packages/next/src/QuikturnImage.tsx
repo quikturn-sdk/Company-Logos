@@ -30,8 +30,9 @@ export interface QuikturnImageProps
  * Next.js `<Image>` wrapper that renders a Quikturn logo for the given domain.
  *
  * Automatically constructs a custom `loader` using `logoUrl()` from
- * `@quikturn/logos`, fires an attribution beacon on mount, and supports
- * reading a token from `<QuikturnProvider>` context.
+ * `@quikturn/logos`, fires a usage-telemetry beacon on mount (this does not
+ * verify attribution), and supports reading a token from
+ * `<QuikturnProvider>` context.
  *
  * @example
  * ```tsx
@@ -66,7 +67,7 @@ export function QuikturnImage({
     [effectiveToken, format, greyscale, theme, variant],
   );
 
-  // Fire attribution beacon on mount (skipped for sk_ tokens and SSR)
+  // Fire usage-telemetry beacon on mount (does not verify attribution)
   useEffect(() => {
     if (effectiveToken) fireBeacon(effectiveToken);
   }, [effectiveToken]);

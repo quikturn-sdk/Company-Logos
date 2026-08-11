@@ -199,7 +199,7 @@ export class QuikturnLogos {
     const objectUrl = URL.createObjectURL(blob);
     this.objectUrls.add(objectUrl);
 
-    // Fire attribution beacon
+    // Fire usage-telemetry beacon (does not verify attribution)
     fireBeacon(this.token);
 
     return { url: objectUrl, blob, contentType, metadata };

@@ -185,7 +185,7 @@
   let animCleanup: { destroy(): void } | null = null;
 
   onMount(() => {
-    // Fire attribution beacon
+    // Fire usage-telemetry beacon (does not verify attribution)
     if (effectiveToken) fireBeacon(effectiveToken);
 
     // Resize observer

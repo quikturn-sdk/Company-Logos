@@ -29,7 +29,7 @@ const ANIMATION_CONFIG = {
  *
  * Supports both `domains` (string[]) and `logos` (LogoConfig[]) inputs.
  * Creates multiple `<ul>` copies for seamless infinite scroll animation.
- * Fires an attribution beacon on initialization.
+ * Fires a usage-telemetry beacon on initialization (does not verify attribution).
  */
 @Component({
   selector: "quikturn-logo-carousel",

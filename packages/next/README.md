@@ -44,7 +44,7 @@ export default function Page() {
 
 ### `<QuikturnImage>`
 
-A `next/image` wrapper that renders a Quikturn logo for the given domain. Automatically constructs a custom `loader`, fires an attribution beacon on mount, and reads a token from `<QuikturnProvider>` context when available.
+A `next/image` wrapper that renders a Quikturn logo for the given domain. Automatically constructs a custom `loader`, fires a usage-telemetry beacon on mount (this does not verify attribution), and reads a token from `<QuikturnProvider>` context when available.
 
 ```tsx
 <QuikturnImage

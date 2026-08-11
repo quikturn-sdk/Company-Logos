@@ -1,9 +1,9 @@
 /**
- * @quikturn/logos SDK — Attribution Beacon
+ * @quikturn/logos SDK — Usage Telemetry Beacon
  *
- * Browser-only module that fires a 1x1 tracking pixel to notify the Quikturn
- * server which pages are using the Logos API. Deduplicates by token so each
- * token fires at most once per page load.
+ * Fire-and-forget 1x1 pixel recording SDK page usage.
+ * Telemetry only — does not verify attribution placement.
+ * Deduplicates by token (at most once per page load).
  */
 
 import { BASE_URL } from "../constants";
@@ -12,13 +12,10 @@ import { BASE_URL } from "../constants";
 const firedTokens = new Set<string>();
 
 /**
- * Fires a 1x1 beacon pixel to the Quikturn attribution endpoint.
+ * Fires a 1x1 tracking pixel to `/_beacon`. Telemetry only — does not
+ * verify attribution placement.
  *
- * - **Deduplication**: Only fires once per token per page load.
- * - **Skip conditions**: Empty token, `sk_` prefix (server keys).
- * - **SSR safety**: No-ops when `window` is not defined.
- *
- * @param token - The publishable API token (qt_/pk_ prefix).
+ * @param token - Publishable API token (qt_/pk_ prefix).
  */
 export function fireBeacon(token: string): void {
   // SSR guard
@@ -34,7 +31,7 @@ export function fireBeacon(token: string): void {
   if (firedTokens.has(token)) return;
   firedTokens.add(token);
 
-  // Fire the beacon
+  // Fire telemetry pixel (fire-and-forget; no response is read)
   const img = new Image();
   img.src = `${BASE_URL}/_beacon?token=${token}&page=${encodeURIComponent(location.href)}`;
 }
