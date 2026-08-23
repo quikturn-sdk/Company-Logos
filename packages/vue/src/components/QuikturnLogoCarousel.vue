@@ -400,7 +400,7 @@ function listStyle(): CSSProperties {
                 :alt="logo.alt"
                 loading="lazy"
                 decoding="async"
-                referrerpolicy="no-referrer"
+                referrerpolicy="origin"
                 :draggable="false"
                 :style="imgStyle()"
               />
@@ -416,7 +416,7 @@ function listStyle(): CSSProperties {
                 :alt="logo.alt"
                 loading="lazy"
                 decoding="async"
-                referrerpolicy="no-referrer"
+                referrerpolicy="origin"
                 :draggable="false"
                 :style="imgStyle()"
               />

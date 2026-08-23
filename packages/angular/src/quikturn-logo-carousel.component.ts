@@ -139,7 +139,7 @@ const ANIMATION_CONFIG = {
             [style.margin]="'0'"
             [style.padding]="'0'"
           >
-            @for (logo of resolvedLogos(); track logo.domain + '-' + ci + '-' + $index) {
+            @for (logo of resolvedLogos(); track logo.domain + '-' + $index) {
               <li
                 role="listitem"
                 [style.flex]="'none'"
@@ -159,7 +159,7 @@ const ANIMATION_CONFIG = {
                       [alt]="logo.alt"
                       loading="lazy"
                       decoding="async"
-                      referrerpolicy="no-referrer"
+                      referrerpolicy="origin"
                       [attr.draggable]="false"
                       [style.height.px]="logoHeight()"
                       style="width: auto; display: block; object-fit: contain"
@@ -172,7 +172,7 @@ const ANIMATION_CONFIG = {
                       [alt]="logo.alt"
                       loading="lazy"
                       decoding="async"
-                      referrerpolicy="no-referrer"
+                      referrerpolicy="origin"
                       [attr.draggable]="false"
                       [style.height.px]="logoHeight()"
                       style="width: auto; display: block; object-fit: contain"

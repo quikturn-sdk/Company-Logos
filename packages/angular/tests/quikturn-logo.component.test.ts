@@ -30,6 +30,7 @@ describe("QuikturnLogoComponent", () => {
       const img = fixture.nativeElement.querySelector("img") as HTMLImageElement;
       expect(img).toBeTruthy();
       expect(img.src).toContain(`${BASE_URL}/github.com`);
+      expect(img.getAttribute("referrerpolicy")).toBe("origin");
     });
 
     it("defaults alt to '${domain} logo'", () => {

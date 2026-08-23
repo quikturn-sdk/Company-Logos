@@ -33,6 +33,9 @@ describe("QuikturnLogoCarousel", () => {
     const images = screen.getAllByRole("img");
     // At minimum the first copy has images; copies multiply them
     expect(images.length).toBeGreaterThanOrEqual(TEST_DOMAINS.length);
+    for (const image of images) {
+      expect(image).toHaveAttribute("referrerpolicy", "origin");
+    }
   });
 
   it("renders images for LogoConfig objects", () => {

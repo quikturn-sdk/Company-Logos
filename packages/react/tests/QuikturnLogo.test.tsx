@@ -62,11 +62,11 @@ describe("QuikturnLogo", () => {
     expect(screen.getByRole("img")).toHaveAttribute("loading", "lazy");
   });
 
-  it("sets referrerPolicy=no-referrer on img", () => {
+  it("sets referrerPolicy=origin on img", () => {
     render(<QuikturnLogo domain="github.com" />);
     expect(screen.getByRole("img")).toHaveAttribute(
       "referrerpolicy",
-      "no-referrer",
+      "origin",
     );
   });
 

@@ -56,6 +56,9 @@ describe("QuikturnLogoCarouselComponent", () => {
     const images = fixture.nativeElement.querySelectorAll("img");
     // At minimum the first copy has images; copies multiply them
     expect(images.length).toBeGreaterThanOrEqual(TEST_DOMAINS.length);
+    for (const image of images) {
+      expect((image as HTMLImageElement).getAttribute("referrerpolicy")).toBe("origin");
+    }
   });
 
   it("renders images for LogoConfig objects", () => {

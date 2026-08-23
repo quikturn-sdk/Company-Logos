@@ -50,7 +50,7 @@ import type { LogoConfig, ResolvedLogo } from "./types";
                   [src]="logo.url"
                   [alt]="logo.alt"
                   loading="lazy"
-                  referrerpolicy="no-referrer"
+                  referrerpolicy="origin"
                   style="max-width: 100%; height: auto; display: block;"
                 />
               </a>
@@ -59,7 +59,7 @@ import type { LogoConfig, ResolvedLogo } from "./types";
                 [src]="logo.url"
                 [alt]="logo.alt"
                 loading="lazy"
-                referrerpolicy="no-referrer"
+                referrerpolicy="origin"
                 style="max-width: 100%; height: auto; display: block;"
               />
             }

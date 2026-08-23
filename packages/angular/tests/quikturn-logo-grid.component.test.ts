@@ -33,6 +33,9 @@ describe("QuikturnLogoGridComponent", () => {
 
       const images = fixture.nativeElement.querySelectorAll("img");
       expect(images.length).toBe(3);
+      for (const image of images) {
+        expect((image as HTMLImageElement).getAttribute("referrerpolicy")).toBe("origin");
+      }
     });
 
     it("uses grid layout (display: grid)", () => {

@@ -339,7 +339,7 @@
                   alt={logo.alt}
                   loading="lazy"
                   decoding="async"
-                  referrerpolicy="no-referrer"
+                  referrerpolicy="origin"
                   draggable="false"
                   style:height="{logoHeight}px"
                   style:width="auto"
@@ -362,7 +362,7 @@
                   alt={logo.alt}
                   loading="lazy"
                   decoding="async"
-                  referrerpolicy="no-referrer"
+                  referrerpolicy="origin"
                   draggable="false"
                   style:height="{logoHeight}px"
                   style:width="auto"

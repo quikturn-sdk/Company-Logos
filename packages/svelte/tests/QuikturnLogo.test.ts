@@ -32,6 +32,7 @@ describe("QuikturnLogo", () => {
     const img = screen.getByRole("img");
     expect(img.getAttribute("src")).toContain(`${BASE_URL}/github.com`);
     expect(img.getAttribute("src")).toContain("token=qt_abc");
+    expect(img).toHaveAttribute("referrerpolicy", "origin");
   });
 
   it('defaults alt to "${domain} logo"', () => {

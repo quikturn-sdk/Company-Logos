@@ -91,11 +91,11 @@ describe("Phase 7B: <quikturn-logo> Web Component", () => {
     document.body.removeChild(el);
   });
 
-  it("E.5b - img has referrerPolicy=no-referrer", async () => {
+  it("E.5b - img sends origin-only referrer", async () => {
     await getQuikturnLogo();
     const el = appendAndGet({ domain: "github.com" });
     const img = el.shadowRoot!.querySelector("img")!;
-    expect(img.referrerPolicy).toBe("no-referrer");
+    expect(img.referrerPolicy).toBe("origin");
     document.body.removeChild(el);
   });
 

@@ -31,6 +31,9 @@ describe("QuikturnLogoGrid", () => {
     render(<QuikturnLogoGrid domains={TEST_DOMAINS} />);
     const images = screen.getAllByRole("img");
     expect(images).toHaveLength(TEST_DOMAINS.length);
+    for (const image of images) {
+      expect(image).toHaveAttribute("referrerpolicy", "origin");
+    }
   });
 
   it("uses grid layout", () => {

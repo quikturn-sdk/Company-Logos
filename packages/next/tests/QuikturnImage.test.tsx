@@ -192,7 +192,7 @@ describe("QuikturnImage", () => {
     expect(img.getAttribute("data-priority")).toBe("true");
   });
 
-  it("sets referrerPolicy=no-referrer", () => {
+  it("sets referrerPolicy=origin", () => {
     render(
       <QuikturnImage
         domain="github.com"
@@ -204,7 +204,7 @@ describe("QuikturnImage", () => {
     );
     expect(screen.getByTestId("next-image")).toHaveAttribute(
       "referrerpolicy",
-      "no-referrer",
+      "origin",
     );
   });
 
