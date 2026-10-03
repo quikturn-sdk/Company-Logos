@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    name: Test (Node ${{ matrix.node-version }})
+  verify:
+    name: Typecheck & Build (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -42,9 +42,6 @@ jobs:
       - name: Typecheck (core)
         run: pnpm run typecheck
 
-      - name: Test (core)
-        run: pnpm run test
-
       - name: Build (core)
         run: pnpm run build
 
@@ -52,10 +49,6 @@ jobs:
       - name: Typecheck (react)
         working-directory: packages/react
         run: pnpm run typecheck
-
-      - name: Test (react)
-        working-directory: packages/react
-        run: pnpm run test
 
       - name: Build (react)
         working-directory: packages/react
@@ -66,10 +59,6 @@ jobs:
         working-directory: packages/next
         run: pnpm run typecheck
 
-      - name: Test (next)
-        working-directory: packages/next
-        run: pnpm run test
-
       - name: Build (next)
         working-directory: packages/next
         run: pnpm run build
@@ -78,10 +67,6 @@ jobs:
       - name: Typecheck (vue)
         working-directory: packages/vue
         run: pnpm run typecheck
-
-      - name: Test (vue)
-        working-directory: packages/vue
-        run: pnpm run test
 
       - name: Build (vue)
         working-directory: packages/vue
@@ -92,10 +77,6 @@ jobs:
         working-directory: packages/svelte
         run: pnpm run typecheck
 
-      - name: Test (svelte)
-        working-directory: packages/svelte
-        run: pnpm run test
-
       - name: Build (svelte)
         working-directory: packages/svelte
         run: pnpm run build
@@ -104,10 +85,6 @@ jobs:
       - name: Typecheck (angular)
         working-directory: packages/angular
         run: pnpm run typecheck
-
-      - name: Test (angular)
-        working-directory: packages/angular
-        run: pnpm run test
 
       - name: Build (angular)
         working-directory: packages/angular

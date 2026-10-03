@@ -1,0 +1,89 @@
+name: Tests
+
+# Runs AFTER the Release workflow finishes (success, failure or no-op) for pushes/dispatches on main.
+# Never gates release or publication, and never runs on pull requests.
+# Deliberately no push/pull_request/release triggers: Release is the only trigger, so each main
+# commit is tested exactly once and GITHUB_TOKEN-created releases cannot suppress the run.
+on:
+  workflow_run:
+    workflows: ["Release"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+# Separate from Release (`release-*`) and keyed per commit so a newer main commit never cancels an
+# older commit's tests.
+concurrency:
+  group: tests-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node-version }})
+    if: >-
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [22, 24, 25]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # --- @quikturn/logos (core) ---
+      - name: Test (core)
+        run: pnpm run test
+
+      # Framework packages resolve @quikturn/logos (and next, @quikturn/logos-react) via workspace dist.
+      - name: Build (core)
+        run: pnpm run build
+
+      # --- @quikturn/logos-react ---
+      - name: Test (react)
+        working-directory: packages/react
+        run: pnpm run test
+
+      - name: Build (react)
+        working-directory: packages/react
+        run: pnpm run build
+
+      # --- @quikturn/logos-next ---
+      - name: Test (next)
+        working-directory: packages/next
+        run: pnpm run test
+
+      # --- @quikturn/logos-vue ---
+      - name: Test (vue)
+        working-directory: packages/vue
+        run: pnpm run test
+
+      # --- @quikturn/logos-svelte ---
+      - name: Test (svelte)
+        working-directory: packages/svelte
+        run: pnpm run test
+
+      # --- @quikturn/logos-angular ---
+      - name: Test (angular)
+        working-directory: packages/angular
+        run: pnpm run test

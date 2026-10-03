@@ -64,6 +64,8 @@ pnpm --filter @quikturn/logos-vue test
 pnpm test:watch
 ```
 
+Pull-request CI (`ci.yml`) runs typecheck and build only, so run the tests locally before opening a PR. Tests for every package (Node 22/24/25) run in `tests.yml` after the `Release` workflow completes for pushes to `main`; they never gate release or publication.
+
 ### Linting and Type Checking
 
 ```bash
